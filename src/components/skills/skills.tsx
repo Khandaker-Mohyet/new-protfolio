@@ -1,11 +1,11 @@
 import React from 'react';
 
-const HomePage = () => {
+const SkillsSection = () => {
     return (
         <div>
-            This is Home Page
+            
         </div>
     );
 };
 
-export default HomePage;
+export default SkillsSection;
