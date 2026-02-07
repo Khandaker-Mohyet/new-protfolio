@@ -11,7 +11,7 @@ const Navbar = () => {
         {/* Logo */}
         <div>
           <a href="#home" className="text-2xl font-medium">
-            K. Mohyet
+            Khandaker Mohyet
           </a>
         </div>
         {/* Nav list */}
