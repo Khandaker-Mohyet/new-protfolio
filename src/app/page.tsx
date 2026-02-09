@@ -1,11 +1,12 @@
 import AboutSection from '@/components/about/about';
 import ContactSection from '@/components/contact/contact';
 import EducationSection from '@/components/education/education';
+import FooterSection from '@/components/footer/footer';
 import HeroSection from '@/components/hero/hero';
 import Navbar from '@/components/navbar/navbar';
 import ProjectSection from '@/components/projects/projects';
 import SkillsSection from '@/components/skills/skills';
-import { Button } from '@/components/ui/button';
+
 
 
 
@@ -16,12 +17,9 @@ const page = () => {
       <HeroSection/>
       <AboutSection/>
       <SkillsSection/>
-      <EducationSection/>
       <ProjectSection/>
       <ContactSection/>
-      <div>
-      <Button>Click me</Button>
-    </div>
+      <FooterSection/>
     </div>
   );
 };
