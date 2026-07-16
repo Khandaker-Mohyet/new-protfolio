@@ -4,7 +4,7 @@ import { Mail, MapPin, PhoneCall } from "lucide-react";
 
 const ContactSection = () => {
   return (
-    <section className="mx-auto my-24 lg:px-8 xl:px-[8%]">
+    <section id="contact" className="mx-auto my-24 lg:px-8 xl:px-[8%]">
       
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
         Contact Me

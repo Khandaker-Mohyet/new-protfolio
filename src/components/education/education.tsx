@@ -2,7 +2,7 @@ import React from 'react';
 
 const EducationSection = () => {
     return (
-        <div>
+        <div id="education">
             <h1>This is Education section</h1>
         </div>
     );

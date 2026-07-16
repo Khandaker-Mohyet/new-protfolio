@@ -85,6 +85,7 @@ const ProjectSection = () => {
 
   return (
     <section
+    id="projects"
       ref={containerRef}
       className="w-full bg-background text-foreground
       px-5 lg:px-8 xl:px-[8%]"

@@ -67,7 +67,7 @@ const SkillsSection = () => {
   const { theme } = useTheme();
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section id="skills" className="relative py-20 overflow-hidden">
       <div className="lg:px-8 xl:px-[8%] py-4 mx-auto px-6">
         <DotPattern
         width={20}

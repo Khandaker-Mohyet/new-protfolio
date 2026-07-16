@@ -10,7 +10,7 @@ const Navbar = () => {
       <nav className="px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between">
         {/* Logo */}
         <div>
-          <a href="#home" className="text-2xl font-medium">
+          <a href="#hero" className="text-2xl font-medium">
             Khandaker Mohyet
           </a>
         </div>
@@ -20,7 +20,7 @@ const Navbar = () => {
         >
           <li>
             <a
-              href="#home"
+              href="#hero"
               className="dark:text-neutral-400 dark:hover:text-white transition-all duration-150 "
             >
               Home
@@ -32,12 +32,12 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="#services" className="dark:text-neutral-400 dark:hover:text-white transition-all duration-150">
+            <a href="#skills" className="dark:text-neutral-400 dark:hover:text-white transition-all duration-150">
               Skills
             </a>
           </li>
           <li>
-            <a href="#work" className="dark:text-neutral-400 dark:hover:text-white transition-all duration-150">
+            <a href="#projects" className="dark:text-neutral-400 dark:hover:text-white transition-all duration-150">
               Project
             </a>
           </li>
