@@ -42,8 +42,8 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="#education" className="dark:text-neutral-400 dark:hover:text-white transition-all duration-150">
-              Education
+            <a href="#experiences" className="dark:text-neutral-400 dark:hover:text-white transition-all duration-150">
+              Experiences
             </a>
           </li>
           <li>

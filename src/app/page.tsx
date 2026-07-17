@@ -1,6 +1,6 @@
 import AboutSection from '@/components/about/about';
 import ContactSection from '@/components/contact/contact';
-import EducationSection from '@/components/education/education';
+import EducationSection from '@/components/experinces/experinces';
 import FooterSection from '@/components/footer/footer';
 import HeroSection from '@/components/hero/hero';
 import Navbar from '@/components/navbar/navbar';
@@ -18,6 +18,7 @@ const page = () => {
       <AboutSection/>
       <SkillsSection/>
       <ProjectSection/>
+      <EducationSection/>
       <ContactSection/>
       <FooterSection/>
     </div>
