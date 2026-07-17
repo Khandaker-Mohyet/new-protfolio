@@ -1,8 +1,62 @@
 "use client";
 
 import { Mail, MapPin, PhoneCall } from "lucide-react";
+import { FormEvent, useState } from "react";
+
+type FormState = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+const initialForm: FormState = {
+  name: "",
+  email: "",
+  message: "",
+};
 
 const ContactSection = () => {
+  const [form, setForm] = useState<FormState>(initialForm);
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setStatus(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send message.");
+      }
+
+      setStatus({ type: "success", message: data.message || "Your message was sent successfully." });
+      setForm(initialForm);
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: error instanceof Error ? error.message : "Something went wrong.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section id="contact" className="mx-auto my-24 lg:px-8 xl:px-[8%]">
       
@@ -50,13 +104,17 @@ const ContactSection = () => {
         {/* Right Side */}
         <div className="rounded-2xl border border-border p-10 flex flex-col">
           
-          <form className="flex flex-col gap-8 h-full">
+          <form className="flex flex-col gap-8 h-full" onSubmit={handleSubmit}>
             
             <div className="space-y-2">
               <label className="text-sm font-medium">Full Name</label>
               <input
                 type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
                 placeholder="Full Name"
+                required
                 className="w-full rounded-lg border border-border bg-transparent px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
@@ -65,7 +123,11 @@ const ContactSection = () => {
               <label className="text-sm font-medium">Email Address</label>
               <input
                 type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
                 placeholder="Email Address"
+                required
                 className="w-full rounded-lg border border-border bg-transparent px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
@@ -73,17 +135,28 @@ const ContactSection = () => {
             <div className="space-y-2 flex-1 flex flex-col">
               <label className="text-sm font-medium">Your Message</label>
               <textarea
-                rows="6"
+                rows={6}
+                name="message"
+                value={form.message}
+                onChange={handleChange}
                 placeholder="Your Message"
+                required
                 className="w-full rounded-lg border border-border bg-transparent px-4 py-3 resize-none focus:outline-none focus:ring-1 focus:ring-primary flex-1"
               />
             </div>
 
+            {status ? (
+              <p className={`text-sm ${status.type === "success" ? "text-green-600" : "text-red-600"}`}>
+                {status.message}
+              </p>
+            ) : null}
+
             <button
               type="submit"
-              className="w-full rounded-lg bg-primary text-primary-foreground py-3 font-medium hover:opacity-90 transition"
+              disabled={isLoading}
+              className="w-full rounded-lg bg-primary text-primary-foreground py-3 font-medium hover:opacity-90 transition disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Send Message →
+              {isLoading ? "Sending..." : "Send Message →"}
             </button>
 
           </form>
