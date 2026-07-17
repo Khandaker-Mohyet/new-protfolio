@@ -38,49 +38,38 @@ const projects = [
 const ProjectSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
+  const [lineHeight, setLineHeight] = useState(0);
 
-  // ✅ ULTRA RELIABLE HEIGHT CALCULATION
   useEffect(() => {
-    const updateHeight = () => {
+    const updateLineHeight = () => {
       if (!contentRef.current) return;
-
-      const totalHeight =
-        contentRef.current.offsetHeight +
-        contentRef.current.getBoundingClientRect().top;
-
-      setHeight(totalHeight);
+      setLineHeight(contentRef.current.scrollHeight);
     };
 
-    // initial
-    setTimeout(updateHeight, 200);
+    const frame = window.requestAnimationFrame(updateLineHeight);
 
-    window.addEventListener("resize", updateHeight);
-    window.addEventListener("load", updateHeight);
+    const resizeObserver = new ResizeObserver(updateLineHeight);
+    if (contentRef.current) {
+      resizeObserver.observe(contentRef.current);
+    }
 
-    // image load হলে আবার height নাও
-    const imgs = document.querySelectorAll("img");
-    imgs.forEach((img) => {
-      img.addEventListener("load", updateHeight);
-    });
+    window.addEventListener("resize", updateLineHeight);
+    window.addEventListener("load", updateLineHeight);
 
     return () => {
-      window.removeEventListener("resize", updateHeight);
-      window.removeEventListener("load", updateHeight);
-
-      imgs.forEach((img) => {
-        img.removeEventListener("load", updateHeight);
-      });
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", updateLineHeight);
+      window.removeEventListener("load", updateLineHeight);
+      resizeObserver.disconnect();
     };
   }, []);
 
-  // ✅ BETTER OFFSET FOR FULL SECTION
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 20%", "end 90%"],
+      const { scrollYProgress } = useScroll({
+    target: contentRef,
+    offset: ["start 20%", "end 95%"],
   });
 
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
+  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, lineHeight]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.05], [0, 1]);
 
   return (
@@ -197,10 +186,9 @@ const ProjectSection = () => {
 
         {/* ===== ANIMATED LINE ===== */}
         <div
-          style={{ height }}
-          className="absolute md:left-8 left-8 top-0 w-[2px]
-          bg-gradient-to-b from-transparent 
-          via-border to-transparent"
+          style={{ height: lineHeight }}
+          className="pointer-events-none absolute left-8 top-0 w-[2px]
+          bg-gradient-to-b from-transparent via-border to-transparent"
         >
           <motion.div
             style={{
@@ -208,7 +196,7 @@ const ProjectSection = () => {
               opacity: opacityTransform,
             }}
             className="absolute inset-x-0 top-0 w-[2px]
-            bg-gradient-to-t from-primary via-blue-500 to-transparent"
+            bg-gradient-to-t from-primary via-pink-500 to-transparent"
           />
         </div>
       </div>

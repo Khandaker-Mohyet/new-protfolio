@@ -13,6 +13,7 @@ const HeroSection = () => {
     const words = [
         "Javascript",
         "React.js",
+        "Next.js",
         "Node.js",
         "TypeScript",
         "Frontend",
