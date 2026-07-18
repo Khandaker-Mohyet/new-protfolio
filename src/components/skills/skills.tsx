@@ -6,7 +6,8 @@ import {
   SiExpress,
   SiFirebase,
 } from "react-icons/si";
-import { FaJsSquare, FaReact, FaNodeJs } from "react-icons/fa";
+import { FaJsSquare, FaReact, FaNodeJs, FaCubes } from "react-icons/fa";
+import { RiNextjsFill } from "react-icons/ri";
 import { useTheme } from "next-themes";
 import { MagicCard } from "../ui/magic-card";
 import { DotPattern } from "../ui/dot-pattern";
@@ -36,6 +37,18 @@ const skills = [
     description: "Library for building reusable UI components.",
     icon: FaReact,
     color: "text-blue-400",
+  },
+  {
+    name: "Next.js",
+    description: "React framework for fast, server-rendered web apps.",
+    icon: RiNextjsFill,
+    color: "text-slate-500",
+  },
+  {
+    name: "shadcn/ui",
+    description: "Component library and design system for building beautiful UIs.",
+    icon: FaCubes,
+    color: "text-purple-500",
   },
   {
     name: "MongoDB",

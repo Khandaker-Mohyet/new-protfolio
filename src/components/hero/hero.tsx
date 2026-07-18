@@ -308,7 +308,7 @@ const HeroSection = () => {
                             Contact <GoArrowUpRight />
                         </Button>
                     </a>
-                    <a href="PH CV.pdf" download>
+                    <a href="protfolio-cv.pdf" download>
                         <ShinyButton>
                             <span className="flex items-center gap-2">
                                 My Resume <GoDownload />
