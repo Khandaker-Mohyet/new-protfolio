@@ -4,6 +4,15 @@ import { cn } from "@/lib/utils";
 
 const experiences = [
   {
+    title: "Instructor (Web Design & Development)",
+    company: "Kapasia Skill Development Institute",
+    period: "October 2025 – Running",
+    description:
+      "My responsibility is to teach web design and development concepts, assist students in solving coding problems, review their work, and ensure a supportive and effective learning environment as a mentor.",
+    tech: ["JavaScript", "HTML5", "CSS3", "WordPress"],
+    icon: GraduationCap,
+  },
+  {
     title: "Frontend Developer (CMS)",
     company: "Softvance Agency",
     period: "July 2025 – September 2025",
@@ -12,15 +21,7 @@ const experiences = [
     tech: ["Webflow", "JavaScript", "HTML5", "CSS3"],
     icon: BriefcaseBusiness,
   },
-  {
-    title: "Instructor (Web Design & Development)",
-    company: "Kapasia Skill Development Institute",
-    period: "October 2025 – Running",
-    description:
-      "Teaching practical web design and development while guiding learners through hands-on projects and real-world concepts.",
-    tech: ["JavaScript", "HTML5", "CSS3", "WordPress"],
-    icon: GraduationCap,
-  },
+  
 ];
 
 const ExperincesSection = () => {
